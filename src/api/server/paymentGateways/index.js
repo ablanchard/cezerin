@@ -4,6 +4,7 @@ const PaymentGatewaysService = require('../services/settings/paymentGateways');
 
 const PayPalCheckout = require('./PayPalCheckout');
 const LiqPay = require('./LiqPay');
+const Stripe = require('./Stripe');
 
 const getOptions = (orderId) => {
   return Promise.all([
@@ -34,6 +35,8 @@ const getPaymentFormSettings = (orderId) => {
         return PayPalCheckout.getPaymentFormSettings(options);
       case 'liqpay':
         return LiqPay.getPaymentFormSettings(options);
+      case 'stripe':
+        return Stripe.getPaymentFormSettings(options);
       default:
         return Promise.reject('Invalid gateway');
     }
@@ -54,6 +57,8 @@ const paymentNotification = (req, res, gateway) => {
         return PayPalCheckout.paymentNotification(options);
       case 'liqpay':
         return LiqPay.paymentNotification(options);
+      case 'stripe':
+        return Stripe.paymentNotification(options);
       default:
         return Promise.reject('Invalid gateway');
     }

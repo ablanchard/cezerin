@@ -14,6 +14,8 @@ const GatewaySettings = ({ gateway }) => {
       return <PayPalButton />;
     case 'liqpay':
       return <LiqPay />;
+    case 'stripe':
+      return <Stripe />;
     default:
       return null;
   }
@@ -69,6 +71,14 @@ const LiqPay = props => {
       </Field>
 
       <Field component={TextField} name="server_url" floatingLabelText="Server URL" hintText="https://<domain>/api/v1/notifications/liqpay" fullWidth={true} />
+    </div>
+  )
+}
+
+const Stripe = props => {
+  return (
+    <div>
+      <Field component={TextField} name="api_key" floatingLabelText="Api Key" fullWidth={true} />
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import api from '../../../client/api'
 import PayPalCheckout from './PayPalCheckout'
 import LiqPay from './LiqPay'
+import Stripe from './Stripe'
 
 export default class PaymentForm extends React.Component {
   constructor(props) {
@@ -64,6 +65,12 @@ export default class PaymentForm extends React.Component {
           return (
             <div className="payment-form">
               <LiqPay formSettings={formSettings} shopSettings={shopSettings} onPayment={onPayment} />
+            </div>
+          )
+        case 'stripe':
+          return (
+            <div className="payment-form">
+              <Stripe formSettings={formSettings} shopSettings={shopSettings} onPayment={onPayment} />
             </div>
           )
         default:
